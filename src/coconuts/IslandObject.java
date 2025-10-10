@@ -49,7 +49,7 @@ public abstract class IslandObject {
     }
 
     protected int hittable_height() {
-        return 0;
+        return (int) imageView.getFitHeight();
     }
 
     public boolean isGroundObject() {
@@ -65,9 +65,19 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
-        int otherCenterX = (other.x + other.width) / 2;
+        int thisY = this.y;
+        if (this.isFalling()) {
+            thisY = this.y + this.hittable_height();
+        }
         int otherY = other.y;
-        return otherY == this.y && (otherCenterX >= this.x && otherCenterX <= this.x + width);
+        if (other.isFalling()) {
+            otherY = other.y + other.hittable_height();
+        }
+        int thisCenterX = this.x + (this.width / 2);
+        int otherCenterX = other.x + (other.width / 2);
+        boolean centerOfThisInOther = (thisCenterX >= other.x) && (thisCenterX < other.x + other.width);
+        boolean centerOfOtherInThis = (otherCenterX >= this.x) && (otherCenterX < this.x + this.width);
+        return (centerOfThisInOther || centerOfOtherInThis) && (otherY == thisY);
     }
 
     public abstract void step();
