@@ -1,7 +1,7 @@
 /*
  * Course: SWE2410-121
  * Fall 2025-2026
- * File header contains class Observer
+ * File header contains interface Observer
  * Name: aubryg and mirzaa
  * Created 10/9/2025
  */

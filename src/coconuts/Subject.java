@@ -1,8 +1,8 @@
 /*
  * Course: SWE2410-121
  * Fall 2025-2026
- * File header contains class Subject
- * Name: aubryg
+ * File header contains interface Subject
+ * Name: mirzaa and aubryg
  * Created 10/9/2025
  */
 package coconuts;

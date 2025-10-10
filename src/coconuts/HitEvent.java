@@ -1,3 +1,10 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class HitEvent
+ * Name: aubryg and mirzaa
+ * Created 10/9/2025
+ */
 package coconuts;
 
 

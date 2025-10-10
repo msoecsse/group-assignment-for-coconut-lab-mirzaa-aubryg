@@ -1,3 +1,10 @@
+/*
+ * Course: SWE2410-121
+ * Fall 2025-2026
+ * File header contains class HittableIslandObject
+ * Name: aubryg and mirzaa
+ * Created 10/9/2025
+ */
 package coconuts;
 
 import javafx.scene.image.Image;
