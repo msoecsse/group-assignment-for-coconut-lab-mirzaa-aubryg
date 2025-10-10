@@ -110,6 +110,14 @@ public class OhCoconutsGameManager {
         scheduledForRemoval.clear();
     }
 
+    public void shootLaser() {
+        if (theCrab != null) {
+            LaserBeam laser = new LaserBeam(this, height, theCrab.getX());
+            registerObject(laser);
+            gamePane.getChildren().add(laser.getImageView());
+        }
+    }
+
     public void scheduleForDeletion(IslandObject islandObject) {
         scheduledForRemoval.add(islandObject);
     }
