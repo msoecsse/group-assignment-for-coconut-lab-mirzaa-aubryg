@@ -18,6 +18,13 @@ import java.util.Collection;
 // This is a domain class; do not introduce JavaFX or other GUI components here
 public class HitEvent implements Subject {
     private final Collection<Observer> observers = new ArrayList<>();
+    private HittableIslandObject hittable;
+    private IslandObject hitting;
+    public HitEvent() {}
+    public HitEvent(HittableIslandObject hittable, IslandObject hitting) {
+        this.hittable = hittable;
+        this.hitting = hitting;
+    }
     @Override
     public void attach(Observer o) {
         observers.add(o);
@@ -29,9 +36,15 @@ public class HitEvent implements Subject {
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyAll(HitEvent hit) {
         for (Observer o : observers) {
-            o.update(this);
+            o.update(hit);
         }
+    }
+    public HittableIslandObject getHittableObject() {
+        return hittable;
+    }
+    public IslandObject getHittingObject() {
+        return hitting;
     }
 }

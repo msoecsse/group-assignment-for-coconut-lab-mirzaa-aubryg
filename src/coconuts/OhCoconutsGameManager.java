@@ -22,6 +22,7 @@ public class OhCoconutsGameManager {
     private final int height, width;
     private final int DROP_INTERVAL = 10;
     private final int MAX_TIME = 100;
+    private final HitEvent subjectHitEvent = new HitEvent();
     private Pane gamePane;
     private Crab theCrab;
     private Beach theBeach;
@@ -42,6 +43,9 @@ public class OhCoconutsGameManager {
         registerObject(theBeach);
         if (theBeach.getImageView() != null)
             System.out.println("Unexpected image view for beach");
+        subjectHitEvent.attach(new BeachHitObserver(this, theBeach));
+        subjectHitEvent.attach(new CrabHitObserver(this, theCrab));
+        subjectHitEvent.attach(new LaserHitObserver(this));
     }
 
     private void registerObject(IslandObject object) {
@@ -95,6 +99,8 @@ public class OhCoconutsGameManager {
             for (HittableIslandObject hittableObject : hittableIslandSubjects) {
                 if (thisObj.canHit(hittableObject) && thisObj.isTouching(hittableObject)) {
                     // TODO: add code here to process the hit
+                    HitEvent hit = new HitEvent(hittableObject, thisObj);
+                    subjectHitEvent.notifyAll(hit);
                     scheduledForRemoval.add(hittableObject);
                     gamePane.getChildren().remove(hittableObject.getImageView());
                 }
@@ -102,6 +108,7 @@ public class OhCoconutsGameManager {
         }
         // actually remove the objects as needed
         for (IslandObject thisObj : scheduledForRemoval) {
+            gamePane.getChildren().remove(thisObj.getImageView());
             allObjects.remove(thisObj);
             if (thisObj instanceof HittableIslandObject) {
                 hittableIslandSubjects.remove((HittableIslandObject) thisObj);

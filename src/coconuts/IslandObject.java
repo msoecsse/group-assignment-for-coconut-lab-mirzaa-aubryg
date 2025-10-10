@@ -65,8 +65,14 @@ public abstract class IslandObject {
     }
 
     public boolean isTouching(IslandObject other) {
-        return false;
+        int otherCenterX = (other.x + other.width) / 2;
+        int otherY = other.y;
+        return otherY == this.y && (otherCenterX >= this.x && otherCenterX <= this.x + width);
     }
 
     public abstract void step();
+
+    public boolean isLaser() {
+        return false;
+    }
 }

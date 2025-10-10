@@ -16,8 +16,17 @@ package coconuts;
  * @version created on 10/9/2025 1:39 PM
  */
 public class LaserHitObserver implements Observer {
+    private final OhCoconutsGameManager gameManager;
+    public LaserHitObserver(OhCoconutsGameManager gameManager) {
+        this.gameManager = gameManager;
+    }
     @Override
     public void update(HitEvent hit) {
-
+        IslandObject hitting = hit.getHittingObject();
+        HittableIslandObject hittable = hit.getHittableObject();
+        if (hitting.isLaser() && hittable.isFalling()) {
+            gameManager.scheduleForDeletion(hittable);
+            gameManager.scheduleForDeletion(hitting);
+        }
     }
 }

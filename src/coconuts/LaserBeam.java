@@ -17,6 +17,7 @@ public class LaserBeam extends IslandObject {
 
     public LaserBeam(OhCoconutsGameManager game, int eyeHeight, int crabCenterX) {
         super(game, crabCenterX, eyeHeight, WIDTH, laserImage);
+        this.getImageView().setFitWidth(5);
     }
 
     public int hittable_height() {
@@ -26,5 +27,14 @@ public class LaserBeam extends IslandObject {
     @Override
     public void step() {
         y -= 3;
+    }
+
+    @Override
+    public boolean isLaser() {
+        return true;
+    }
+    @Override
+    public boolean canHit(IslandObject other) {
+        return other.isFalling();
     }
 }

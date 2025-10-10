@@ -16,6 +16,12 @@ package coconuts;
  * @version created on 10/9/2025 1:41 PM
  */
 public class BeachHitObserver implements Observer {
+    private final OhCoconutsGameManager gameManager;
+    private final Beach beach;
+    public BeachHitObserver(OhCoconutsGameManager gameManager, Beach beach) {
+        this.gameManager = gameManager;
+        this.beach = beach;
+    }
     @Override
     public void update(HitEvent hit) {
 

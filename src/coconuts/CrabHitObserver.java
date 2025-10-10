@@ -16,8 +16,21 @@ package coconuts;
  * @version created on 10/9/2025 1:40 PM
  */
 public class CrabHitObserver implements Observer {
+    private final OhCoconutsGameManager gameManager;
+    private final Crab crab;
+    public CrabHitObserver(OhCoconutsGameManager gameManager, Crab crab) {
+        this.crab = crab;
+        this.gameManager = gameManager;
+    }
+
     @Override
     public void update(HitEvent hit) {
-
+        IslandObject hitting = hit.getHittingObject();
+        HittableIslandObject hittable = hit.getHittableObject();
+        if (hitting.isFalling() && hittable.isGroundObject()) {
+            gameManager.killCrab();
+            gameManager.scheduleForDeletion(hittable);
+            gameManager.scheduleForDeletion(hitting);
+        }
     }
 }
