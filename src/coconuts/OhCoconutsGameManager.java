@@ -113,7 +113,7 @@ public class OhCoconutsGameManager {
         for (IslandObject thisObj : scheduledForRemoval) {
             gamePane.getChildren().remove(thisObj.getImageView());
             allObjects.remove(thisObj);
-            if (!thisObj.isHittable()) {
+            if (thisObj.isHittable()) {
                 hittableIslandSubjects.remove((HittableIslandObject) thisObj);
             }
         }

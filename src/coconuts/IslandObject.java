@@ -69,16 +69,26 @@ public abstract class IslandObject {
         if (this.isFalling()) {
             thisY = this.y + this.hittable_height();
         }
+
         int otherY = other.y;
         if (other.isFalling()) {
             otherY = other.y + other.hittable_height();
         }
+
         int thisCenterX = this.x + (this.width / 2);
         int otherCenterX = other.x + (other.width / 2);
+
         boolean centerOfThisInOther = (thisCenterX >= other.x) && (thisCenterX < other.x + other.width);
         boolean centerOfOtherInThis = (otherCenterX >= this.x) && (otherCenterX < this.x + this.width);
-        return (centerOfThisInOther || centerOfOtherInThis) && (otherY == thisY);
+
+        // checking for a longer bound.
+        boolean horizontallyOverlaps = this.x < other.x + other.width && this.x + this.width > other.x;
+
+        boolean verticallyClose = Math.abs(thisY - otherY) < 10;
+
+        return (centerOfThisInOther || centerOfOtherInThis || horizontallyOverlaps) && verticallyClose;
     }
+
 
     public abstract void step();
 
