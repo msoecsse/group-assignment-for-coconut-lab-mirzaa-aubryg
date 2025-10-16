@@ -31,7 +31,7 @@ public class Scoreboard implements Observer {
         // Coconut hits beach
         if (hitter.isFalling() && target.isGroundObject()) {
             coconutsOnBeach++;
-           gameManager.coconutMiss(coconutsOnBeach);
+            gameManager.coconutMiss(coconutsOnBeach);
         }
 
         // Laser hits coconut
