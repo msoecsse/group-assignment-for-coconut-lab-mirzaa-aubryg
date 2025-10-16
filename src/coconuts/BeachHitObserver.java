@@ -12,7 +12,7 @@ package coconuts;
  * Fall 2025-2026
  * Class BeachHitObserver Purpose: Observer for coconuts that reached the beach
  *
- * @author aubryg
+ * @author mirzaa
  * @version created on 10/9/2025 1:41 PM
  */
 public class BeachHitObserver implements Observer {
@@ -28,7 +28,7 @@ public class BeachHitObserver implements Observer {
         HittableIslandObject hittable = hit.getHittableObject();
 
         // Coconut hits beach
-        if (hitting.isFalling() && hittable.isGroundObject()) {
+        if (hitting.isFalling() && hittable == beach) {
             gameManager.scheduleForDeletion(hitting);
             gameManager.coconutDestroyed();
             // Optionally update scoreboard here if it’s not already attached separately

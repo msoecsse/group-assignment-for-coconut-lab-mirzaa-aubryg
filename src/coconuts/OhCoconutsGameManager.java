@@ -27,7 +27,7 @@ public class OhCoconutsGameManager {
     private Crab theCrab;
     private Beach theBeach;
     /* game play */
-    private int coconutsInFlight = 1;
+    private int coconutsInFlight = 0;
     private int gameTick = 0;
 
     public OhCoconutsGameManager(int height, int width, Pane gamePane) {
@@ -122,7 +122,7 @@ public class OhCoconutsGameManager {
 
     public void shootLaser() {
         if (theCrab != null) {
-            LaserBeam laser = new LaserBeam(this, height, theCrab.getX());
+            LaserBeam laser = new LaserBeam(this, height, theCrab.getMidX());
             registerObject(laser);
             gamePane.getChildren().add(laser.getImageView());
         }

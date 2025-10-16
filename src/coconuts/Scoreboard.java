@@ -2,13 +2,19 @@
  * Course: SWE2410-121
  * Fall 2025-2026
  * File header contains class Scoreboard
- * Name: mirzaa
+ * Name: mirzaa and aubryg
  * Created 10/15/2025
  */
 package coconuts;
 
 /**
- * Observes hit events and maintains counts of coconuts destroyed and coconuts that hit the beach.
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class Scoreboard Purpose: Observes hit events and maintains
+ *          counts of coconuts destroyed and coconuts that hit the beach
+ *
+ * @author mirzaa
+ * @version created on 10/12/2025 1:41 PM
  */
 public class Scoreboard implements Observer {
     private int coconutsDestroyed = 0;
@@ -21,15 +27,15 @@ public class Scoreboard implements Observer {
 
         // Coconut hits beach
         if (hitter.isFalling() && target.isGroundObject()) {
-            System.out.println("Coconut hit the beach!");
             coconutsOnBeach++;
+            GameController.laserHits(coconutsOnBeach);
         }
 
         // Laser hits coconut
         else if (!hitter.isFalling() && target.isFalling()) {
-            System.out.println("Laser hit the coconut!");
-
             coconutsDestroyed++;
+            GameController.laserMisses(coconutsDestroyed);
+
         }
     }
 

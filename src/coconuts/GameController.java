@@ -32,9 +32,9 @@ public class GameController {
     private Pane theBeach;
     private OhCoconutsGameManager theGame;
     @FXML
-    private Label coconutDestroyed;
+    private static Label coconutDestroyed = new Label("Coconuts Destroyed: ");
     @FXML
-    private Label coconutMissed;
+    private static Label coconutMissed = new Label("Coconuts Missed: ");
     @FXML
     public void initialize() {
         theGame = new OhCoconutsGameManager((int) (gamePane.getPrefHeight() - theBeach.getPrefHeight()),
@@ -53,21 +53,28 @@ public class GameController {
 
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
-        if (theGame.getCrab() == null) return;
-        if (started && keyEvent.getCode() == KeyCode.RIGHT && !theGame.done()) {
-            theGame.getCrab().crawl(10);
-        } else if (started && keyEvent.getCode() == KeyCode.LEFT && !theGame.done()) {
-            theGame.getCrab().crawl(-10);
-        } else if (keyEvent.getCode() == KeyCode.UP){
-            theGame.shootLaser();
-        } else if (keyEvent.getCode() == KeyCode.SPACE) {
-            if (!started) {
-                coconutTimeline.play();
-                started = true;
-            } else {
-                coconutTimeline.pause();
-                started = false;
+        if (theGame.getCrab() != null) {
+            if (started && keyEvent.getCode() == KeyCode.RIGHT && !theGame.done()) {
+                theGame.getCrab().crawl(10);
+            } else if (started && keyEvent.getCode() == KeyCode.LEFT && !theGame.done()) {
+                theGame.getCrab().crawl(-10);
+            } else if (keyEvent.getCode() == KeyCode.UP) {
+                theGame.shootLaser();
+            } else if (keyEvent.getCode() == KeyCode.SPACE) {
+                if (!started) {
+                    coconutTimeline.play();
+                    started = true;
+                } else {
+                    coconutTimeline.pause();
+                    started = false;
+                }
             }
         }
+    }
+    public static void laserHits(int numCoconuts) {
+        coconutDestroyed.setText("Coconuts Destroyed: " + numCoconuts);
+    }
+    public static void laserMisses(int numCoconuts) {
+        coconutMissed.setText("Coconuts Missed: " + numCoconuts);
     }
 }

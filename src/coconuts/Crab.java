@@ -31,8 +31,8 @@ public class Crab extends HittableIslandObject {
         display();
     }
 
-    public int getX() {
-        return x;
+    public int getMidX() {
+        return x + WIDTH / 2;
     }
     public boolean isGroundObject() {
         return true;
