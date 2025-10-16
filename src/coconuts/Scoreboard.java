@@ -38,8 +38,6 @@ public class Scoreboard implements Observer {
         else if (!hitter.isFalling() && target.isFalling()) {
             coconutsDestroyed++;
             gameManager.coconutHit(coconutsDestroyed);
-
-
         }
     }
 

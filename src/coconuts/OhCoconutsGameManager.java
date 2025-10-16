@@ -105,7 +105,7 @@ public class OhCoconutsGameManager {
                     // TODO: add code here to process the hit
                     HitEvent hit = new HitEvent(hittableObject, thisObj);
                     subjectHitEvent.notifyAll(hit);
-                    if (!hittableObject.isGroundObject())  { // not beach!
+                    if (!hittableObject.isGroundObject())  {
                         scheduledForRemoval.add(hittableObject);
                         gamePane.getChildren().remove(hittableObject.getImageView());
                     }                }

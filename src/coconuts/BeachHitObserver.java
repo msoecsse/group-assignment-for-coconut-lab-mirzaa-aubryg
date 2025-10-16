@@ -31,7 +31,6 @@ public class BeachHitObserver implements Observer {
         if (hitting.isFalling() && hittable == beach) {
             gameManager.scheduleForDeletion(hitting);
             gameManager.coconutDestroyed();
-            // Optionally update scoreboard here if it’s not already attached separately
         }
     }
 }

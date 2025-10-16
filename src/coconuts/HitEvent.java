@@ -23,7 +23,7 @@ public class HitEvent implements Subject {
     public HitEvent() {}
     public HitEvent(IslandObject object, IslandObject hitting) {
         // Only store the first as Hittable if it truly is.
-        // This pervents some errors we may get with the laser beams.
+        // This prevents some errors we may get with the laser beams.
         if (object.isHittable()) {
             this.hittable = (HittableIslandObject) object;
         }
