@@ -24,9 +24,13 @@ public class LaserHitObserver implements Observer {
     public void update(HitEvent hit) {
         IslandObject hitting = hit.getHittingObject();
         HittableIslandObject hittable = hit.getHittableObject();
+
+        // Laser hits coconut
         if (hitting.isLaser() && hittable.isFalling()) {
             gameManager.scheduleForDeletion(hittable);
             gameManager.scheduleForDeletion(hitting);
+            gameManager.coconutDestroyed();
         }
     }
+
 }

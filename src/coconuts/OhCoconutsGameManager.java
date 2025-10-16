@@ -46,6 +46,8 @@ public class OhCoconutsGameManager {
         subjectHitEvent.attach(new BeachHitObserver(this, theBeach));
         subjectHitEvent.attach(new CrabHitObserver(this, theCrab));
         subjectHitEvent.attach(new LaserHitObserver(this));
+        subjectHitEvent.attach(new Scoreboard());
+
     }
 
     private void registerObject(IslandObject object) {
@@ -101,16 +103,17 @@ public class OhCoconutsGameManager {
                     // TODO: add code here to process the hit
                     HitEvent hit = new HitEvent(hittableObject, thisObj);
                     subjectHitEvent.notifyAll(hit);
-                    scheduledForRemoval.add(hittableObject);
-                    gamePane.getChildren().remove(hittableObject.getImageView());
-                }
+                    if (!hittableObject.isGroundObject())  { // not beach!
+                        scheduledForRemoval.add(hittableObject);
+                        gamePane.getChildren().remove(hittableObject.getImageView());
+                    }                }
             }
         }
         // actually remove the objects as needed
         for (IslandObject thisObj : scheduledForRemoval) {
             gamePane.getChildren().remove(thisObj.getImageView());
             allObjects.remove(thisObj);
-            if (thisObj instanceof HittableIslandObject) {
+            if (!thisObj.isHittable()) {
                 hittableIslandSubjects.remove((HittableIslandObject) thisObj);
             }
         }

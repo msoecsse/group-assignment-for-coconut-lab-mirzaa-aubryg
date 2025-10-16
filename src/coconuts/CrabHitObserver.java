@@ -27,7 +27,10 @@ public class CrabHitObserver implements Observer {
     public void update(HitEvent hit) {
         IslandObject hitting = hit.getHittingObject();
         HittableIslandObject hittable = hit.getHittableObject();
-        if (hitting.isFalling() && hittable.isGroundObject()) {
+
+        // Only kill crab if the hittable IS the crab
+        if (hitting.isFalling() && hittable == crab) {
+            System.out.println("Crab got hit by coconut!");
             gameManager.killCrab();
             gameManager.scheduleForDeletion(hittable);
             gameManager.scheduleForDeletion(hitting);

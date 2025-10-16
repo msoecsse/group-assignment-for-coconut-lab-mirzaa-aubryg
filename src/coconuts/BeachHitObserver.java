@@ -24,6 +24,14 @@ public class BeachHitObserver implements Observer {
     }
     @Override
     public void update(HitEvent hit) {
+        IslandObject hitting = hit.getHittingObject();
+        HittableIslandObject hittable = hit.getHittableObject();
 
+        // Coconut hits beach
+        if (hitting.isFalling() && hittable.isGroundObject()) {
+            gameManager.scheduleForDeletion(hitting);
+            gameManager.coconutDestroyed();
+            // Optionally update scoreboard here if it’s not already attached separately
+        }
     }
 }

@@ -8,6 +8,7 @@
 package coconuts;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -30,7 +31,10 @@ public class GameController {
     @FXML
     private Pane theBeach;
     private OhCoconutsGameManager theGame;
-
+    @FXML
+    private Label coconutDestroyed;
+    @FXML
+    private Label coconutMissed;
     @FXML
     public void initialize() {
         theGame = new OhCoconutsGameManager((int) (gamePane.getPrefHeight() - theBeach.getPrefHeight()),
@@ -49,9 +53,9 @@ public class GameController {
 
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
-        if (keyEvent.getCode() == KeyCode.RIGHT && !theGame.done()) {
+        if (started && keyEvent.getCode() == KeyCode.RIGHT && !theGame.done()) {
             theGame.getCrab().crawl(10);
-        } else if (keyEvent.getCode() == KeyCode.LEFT && !theGame.done()) {
+        } else if (started && keyEvent.getCode() == KeyCode.LEFT && !theGame.done()) {
             theGame.getCrab().crawl(-10);
         } else if (keyEvent.getCode() == KeyCode.UP){
             theGame.shootLaser();
