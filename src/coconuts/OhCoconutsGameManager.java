@@ -29,11 +29,13 @@ public class OhCoconutsGameManager {
     /* game play */
     private int coconutsInFlight = 0;
     private int gameTick = 0;
+    private GameController gameController;
 
-    public OhCoconutsGameManager(int height, int width, Pane gamePane) {
+    public OhCoconutsGameManager(int height, int width, Pane gamePane, GameController gameController) {
         this.height = height;
         this.width = width;
         this.gamePane = gamePane;
+        this.gameController = gameController;
 
         this.theCrab = new Crab(this, height, width);
         registerObject(theCrab);
@@ -46,7 +48,7 @@ public class OhCoconutsGameManager {
         subjectHitEvent.attach(new BeachHitObserver(this, theBeach));
         subjectHitEvent.attach(new CrabHitObserver(this, theCrab));
         subjectHitEvent.attach(new LaserHitObserver(this));
-        subjectHitEvent.attach(new Scoreboard());
+        subjectHitEvent.attach(new Scoreboard(this));
 
     }
 
@@ -134,5 +136,12 @@ public class OhCoconutsGameManager {
 
     public boolean done() {
         return coconutsInFlight == 0 && gameTick >= MAX_TIME;
+    }
+
+    public void coconutMiss(int missed) {
+        gameController.setCoconutMissed(missed);
+    }
+    public void coconutHit(int hit) {
+        gameController.setCoconutDestroyed(hit);
     }
 }

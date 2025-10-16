@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" onKeyPressed="#onKeyPressed" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coconuts.GameController">
+<GridPane alignment="center" hgap="10" onKeyPressed="#onKeyPressed" vgap="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="coconuts.GameController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -20,17 +20,22 @@
             <children>
                 <Pane id="theGame" fx:id="gamePane" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, derive(skyblue, 20%), derive(skyblue, -40%));">
                     <children>
-                  <Label layoutY="23.0" text="Number of Coconuts Missed:  0" />
-                  <Label layoutY="6.0" text="Number of Coconuts Destroyed: 0" />
+                  <Label fx:id="coconutMissed" layoutY="23.0" text="Number of Coconuts Missed:  0" />
+                  <Label fx:id="coconutDestroyed" layoutY="6.0" text="Number of Coconuts Destroyed: 0" />
                     </children>
                 </Pane>
                 <Pane id="theBeach" fx:id="theBeach" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom right, derive(tan, 30%), derive(tan, -50%));">
                <children>
-                        <Label text="Press arrow keys to move coconut" textFill="darkred">
+                        <Label text="Press arrow keys to move crab" textFill="darkred">
                             <font>
                                 <Font name="Poor Richard" size="18.0" />
                             </font>
                         </Label>
+                  <Label layoutY="26.0" text="Press up arrow to shoot lasers" textFill="darkred">
+                     <font>
+                        <Font name="Poor Richard" size="18.0" />
+                     </font>
+                  </Label>
                </children></Pane>
             </children>
         </VBox>

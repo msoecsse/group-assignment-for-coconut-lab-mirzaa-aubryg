@@ -19,7 +19,10 @@ package coconuts;
 public class Scoreboard implements Observer {
     private int coconutsDestroyed = 0;
     private int coconutsOnBeach = 0;
-
+    private final OhCoconutsGameManager gameManager;
+    public Scoreboard(OhCoconutsGameManager gameManager) {
+        this.gameManager = gameManager;
+    }
     @Override
     public void update(HitEvent hit) {
         IslandObject hitter = hit.getHittingObject();
@@ -28,13 +31,14 @@ public class Scoreboard implements Observer {
         // Coconut hits beach
         if (hitter.isFalling() && target.isGroundObject()) {
             coconutsOnBeach++;
-            GameController.laserHits(coconutsOnBeach);
+           gameManager.coconutMiss(coconutsOnBeach);
         }
 
         // Laser hits coconut
         else if (!hitter.isFalling() && target.isFalling()) {
             coconutsDestroyed++;
-            GameController.laserMisses(coconutsDestroyed);
+            gameManager.coconutHit(coconutsDestroyed);
+
 
         }
     }

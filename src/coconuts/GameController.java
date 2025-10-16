@@ -32,13 +32,13 @@ public class GameController {
     private Pane theBeach;
     private OhCoconutsGameManager theGame;
     @FXML
-    private static Label coconutDestroyed = new Label("Coconuts Destroyed: ");
+    private Label coconutDestroyed;
     @FXML
-    private static Label coconutMissed = new Label("Coconuts Missed: ");
+    private Label coconutMissed;
     @FXML
     public void initialize() {
         theGame = new OhCoconutsGameManager((int) (gamePane.getPrefHeight() - theBeach.getPrefHeight()),
-                (int) (gamePane.getPrefWidth()), gamePane);
+                (int) (gamePane.getPrefWidth()), gamePane, this);
 
         gamePane.setFocusTraversable(true);
 
@@ -71,10 +71,10 @@ public class GameController {
             }
         }
     }
-    public static void laserHits(int numCoconuts) {
-        coconutDestroyed.setText("Coconuts Destroyed: " + numCoconuts);
+    public void setCoconutDestroyed(int destroyed) {
+        coconutDestroyed.setText("Coconuts Destroyed: " + destroyed);
     }
-    public static void laserMisses(int numCoconuts) {
-        coconutMissed.setText("Coconuts Missed: " + numCoconuts);
+    public void setCoconutMissed(int missed) {
+        coconutMissed.setText("Coconuts Missed: " + missed);
     }
 }
