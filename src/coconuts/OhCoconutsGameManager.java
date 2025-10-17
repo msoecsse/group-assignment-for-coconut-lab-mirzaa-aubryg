@@ -14,7 +14,15 @@ import javafx.scene.layout.Pane;
 import java.util.Collection;
 import java.util.LinkedList;
 
-// This class manages the game, including tracking all island objects and detecting when they hit
+
+/**
+ * Course SWE2410-121
+ * Fall 2025-2026
+ * Class OhCoconutsGameManager Purpose: This class manages the game, including tracking all island objects and detecting when they hit
+ *
+ * @editors aubryg and mirzaa
+ * @version edited on 10/10/2025 12:20 PM
+ */
 public class OhCoconutsGameManager {
     private final Collection<IslandObject> allObjects = new LinkedList<>();
     private final Collection<HittableIslandObject> hittableIslandSubjects = new LinkedList<>();
